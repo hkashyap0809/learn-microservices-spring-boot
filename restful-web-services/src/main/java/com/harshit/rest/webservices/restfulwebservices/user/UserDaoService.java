@@ -3,6 +3,7 @@ package com.harshit.rest.webservices.restfulwebservices.user;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
@@ -27,9 +28,11 @@ public class UserDaoService {
 	}
 	
 	public User findOne(Integer id) {
-		users
+		Predicate<? super User> predicate = user -> user.getId().equals(id);
+		return users
 		.stream()
-		.filter(user -> user.getId().equals(id))
+//		.filter(user -> user.getId().equals(id))
+		.filter(predicate)
 		.findFirst()
 		.get();
 	}
