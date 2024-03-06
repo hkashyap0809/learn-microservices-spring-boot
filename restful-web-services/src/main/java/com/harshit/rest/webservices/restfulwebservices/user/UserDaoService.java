@@ -13,13 +13,14 @@ public class UserDaoService {
 	//we will use JPA / Hibernate later
 	
 	private static List<User> users = new ArrayList<>();
+	private static Integer usersCount = 0;
 	
 	static {
-		users.add( new User(1,"Adam", LocalDate.now().minusYears(30)));
-		users.add( new User(2,"Niggesh", LocalDate.now().minusYears(31)));
-		users.add( new User(3,"Ramesh", LocalDate.now().minusYears(25)));
-		users.add( new User(4,"Jim Bro", LocalDate.now().minusYears(28)));
-		users.add( new User(5,"Latifi", LocalDate.now().minusYears(26)));
+		users.add( new User(++usersCount,"Adam", LocalDate.now().minusYears(30)));
+		users.add( new User(++usersCount,"Niggesh", LocalDate.now().minusYears(31)));
+		users.add( new User(++usersCount,"Ramesh", LocalDate.now().minusYears(25)));
+		users.add( new User(++usersCount,"Jim Bro", LocalDate.now().minusYears(28)));
+		users.add( new User(++usersCount,"Latifi", LocalDate.now().minusYears(26)));
 	}
 	
 	
@@ -36,4 +37,11 @@ public class UserDaoService {
 		.findFirst()
 		.get();
 	}
+
+
+	public void save(User user) {
+		user.setId(++usersCount);
+		users.add( user);	
+	}
+	 
 }
