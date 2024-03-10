@@ -35,7 +35,8 @@ public class UserDaoService {
 //		.filter(user -> user.getId().equals(id))
 		.filter(predicate)
 		.findFirst()
-		.get();
+//		.get();
+		.orElse(null);
 	}
 
 
